@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Door-to-Door Waste Collection System</title>
+    <style>
+      :root {
+        --bg: #f5f8ff;
+        --panel: #ffffff;
+        --primary: #1f7a5a;
+        --primary-dark: #175b43;
+        --accent: #f2b84b;
+        --text: #1e293b;
+        --muted: #64748b;
+        --danger: #dc2626;
+        --warning: #d97706;
+        --success: #16a34a;
+        --border: #dbe3ee;
+        --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #eef7f3, #f5f8ff);
+        color: var(--text);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px 20px;
+        box-shadow: var(--shadow);
+        margin-bottom: 24px;
+      }
+
+      .brand {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+
+      .nav {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .nav button {
+        border: 0;
+        background: #ecfdf5;
+        color: var(--primary-dark);
+        padding: 10px 14px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+        margin-bottom: 24px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .stat-label {
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 8px;
+      }
+
+      .section {
+        margin-top: 28px;
+      }
+
+      .section h2 {
+        margin-bottom: 14px;
+        color: var(--primary-dark);
+      }
+
+      .panel-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 20px;
+      }
+
+      form {
+        display: grid;
+        gap: 14px;
+      }
+
+      input, select, textarea, button {
+        font: inherit;
+      }
+
+      input, select, textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: #fff;
+      }
+
+      textarea { min-height: 100px; resize: vertical; }
+
+      button.primary {
+        border: 0;
+        background: var(--primary);
+        color: white;
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        border: 1px solid var(--primary);
+        background: #edfbf5;
+        color: var(--primary-dark);
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .item {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 14px;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .badge.success { background: #dcfce7; color: var(--success); }
+      .badge.warning { background: #fff7ed; color: var(--warning); }
+      .badge.danger { background: #fee2e2; color: var(--danger); }
+      .badge.info { background: #dbeafe; color: #1d4ed8; }
+
+      .small { color: var(--muted); font-size: 0.82rem; }
+      .muted { color: var(--muted); }
+      .hidden { display: none; }
+
+      .login-page {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .login-page.hidden { display: none; }
+
+      .login-card {
+        width: min(100%, 440px);
+        padding: 36px;
+      }
+
+      .login-mark {
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        margin-bottom: 20px;
+        border-radius: 16px;
+        background: #ecfdf5;
+        font-size: 1.6rem;
+      }
+
+      .login-card h1 {
+        margin: 0 0 8px;
+        color: var(--primary-dark);
+        font-size: 1.7rem;
+      }
+
+      .login-card p {
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .login-error {
+        min-height: 1.25rem;
+        color: var(--danger);
+        font-size: 0.9rem;
+      }
+
+      .login-error.success { color: var(--success); }
+
+      .account-note {
+        margin-top: 20px;
+        padding: 12px;
+        border-radius: 12px;
+        background: #f8fafc;
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+
+      .auth-switch {
+        margin: 18px 0 0;
+        text-align: center;
+      }
+
+      .auth-switch button {
+        border: 0;
+        background: none;
+        color: var(--primary-dark);
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      @media (max-width: 900px) {
+        .panel-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="login-page" id="loginPage">
+      <div class="card login-card">
+        <div class="login-mark" aria-hidden="true">♻️</div>
+        <h1 id="authTitle">Welcome back</h1>
+        <p id="authDescription">Sign in to manage your waste collection services.</p>
+        <form id="loginForm">
+          <label for="loginRole">Account type</label>
+          <select id="loginRole" name="role" required>
+            <option value="resident">Resident</option>
+            <option value="worker">Sanitary worker</option>
+            <option value="ward_officer">Ward officer</option>
+            <option value="admin">Municipal administrator</option>
+          </select>
+          <label for="loginPhone">Registered phone number</label>
+          <input id="loginPhone" name="phone" type="tel" autocomplete="username" placeholder="+91 90000 11111" required />
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+          <div class="login-error" id="loginError" role="alert" aria-live="polite"></div>
+          <button class="primary" type="submit">Sign in</button>
+        </form>
+        <form id="signupForm" class="hidden">
+          <label for="signupName">Full name</label>
+          <input id="signupName" name="name" autocomplete="name" placeholder="Your full name" required />
+          <label for="signupPhone">Phone number</label>
+          <input id="signupPhone" name="phone" type="tel" autocomplete="tel" placeholder="+91 98765 43210" required />
+          <label for="signupAddress">Household address</label>
+          <input id="signupAddress" name="address" autocomplete="street-address" placeholder="House number, street, locality" required />
+          <label for="signupWard">Ward</label>
+          <select id="signupWard" name="wardId" required>
+            <option value="">Loading wards...</option>
+          </select>
+          <label for="signupPassword">Create password</label>
+          <input id="signupPassword" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required />
+          <label for="signupConfirmPassword">Confirm password</label>
+          <input id="signupConfirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Re-enter your password" required />
+          <div class="login-error" id="signupError" role="alert" aria-live="polite"></div>
+          <button class="primary" type="submit">Create resident account</button>
+        </form>
+        <p class="auth-switch">
+          <span id="authSwitchPrompt">New resident?</span>
+          <button id="authSwitchButton" type="button">Create an account</button>
+        </p>
+        <div class="account-note" id="demoAccountNote">
+          Demo accounts use the phone number shown in the app data and password <strong>waste123</strong>.
+          Open this app through its Node server; a static preview cannot reach the login API.
+        </div>
+      </div>
+    </section>
+
+    <div class="container hidden" id="appContainer">
+      <header class="topbar">
+        <div class="brand">Smart Waste Collection Scheduling</div>
+        <div id="signedInUser" class="small"></div>
+        <nav class="nav">
+          <button data-target="dashboard">Dashboard</button>
+          <button data-target="residents">Residents</button>
+          <button data-target="workers">Workers</button>
+          <button data-target="officers">Officers</button>
+          <button data-target="admin">Admin</button>
+          <button id="logoutButton" type="button">Sign out</button>
+        </nav>
+      </header>
+
+      <main>
+        <section id="dashboard" class="section">
+          <div class="grid" id="statsGrid"></div>
+          <div class="panel-grid">
+            <div class="card">
+              <h2>Recent pickups</h2>
+              <div class="list" id="pickupsList"></div>
+            </div>
+            <div class="card">
+              <h2>Notifications</h2>
+              <div class="list" id="notificationsList"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="residents" class="section hidden">
+          <div class="panel-grid">
+            <div class="card">
+              <h2>Register a household</h2>
+              <form id="registerForm">
+                <input name="name" placeholder="Resident name" required />
+                <input name="phone" placeholder="Phone number" required />
+                <input name="address" placeholder="House address" required />
+                <select name="wardId" id="residentWardSelect" required></select>
+                <button class="primary" type="submit">Register household</button>
+              </form>
+            </div>
+            <div class="card">
+              <h2>Resident verification queue</h2>
+              <div class="list" id="residentQueueList"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="workers" class="section hidden">
+          <div class="panel-grid">
+            <div class="card">
+              <h2>Confirm pickup</h2>
+              <form id="pickupForm">
+                <select name="householdId" id="pickupHouseholdSelect" required></select>
+                <select name="workerId" id="pickupWorkerSelect" required></select>
+                <select name="routeId" id="pickupRouteSelect" required></select>
+                <input name="qrCode" placeholder="QR code" required />
+                <input name="gpsLat" type="number" step="any" placeholder="GPS latitude" required />
+                <input name="gpsLng" type="number" step="any" placeholder="GPS longitude" required />
+                <button class="primary" type="submit">Mark pickup confirmed</button>
+              </form>
+            </div>
+            <div class="card">
+              <h2>Attendance</h2>
+              <form id="attendanceForm">
+                <select name="workerId" id="attendanceWorkerSelect" required></select>
+                <select name="routeId" id="attendanceRouteSelect" required></select>
+                <input name="checkIn" type="datetime-local" required />
+                <input name="checkOut" type="datetime-local" />
+                <input name="gpsLat" type="number" step="any" placeholder="GPS latitude" required />
+                <input name="gpsLng" type="number" step="any" placeholder="GPS longitude" required />
+                <button class="primary" type="submit">Record attendance</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="officers" class="section hidden">
+          <div class="panel-grid">
+            <div class="card">
+              <h2>Create route</h2>
+              <form id="routeForm">
+                <select name="wardId" id="routeWardSelect" required></select>
+                <select name="workerId" id="routeWorkerSelect" required></select>
+                <select name="vehicleId" id="vehicleSelect" required></select>
+                <input name="window" placeholder="Collection window (e.g. 07:00-11:00)" required />
+                <textarea name="households" placeholder="Household IDs separated by comma" required></textarea>
+                <button class="primary" type="submit">Create route</button>
+              </form>
+            </div>
+            <div class="card">
+              <h2>Missed pickup / complaint queue</h2>
+              <div class="list" id="complaintsList"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="admin" class="section hidden">
+          <div class="panel-grid">
+            <div class="card">
+              <h2>Disruption and reschedule</h2>
+              <form id="disruptionForm">
+                <select name="wardId" id="disruptionWardSelect" required></select>
+                <input name="reason" placeholder="Disruption reason" required />
+                <textarea name="affectedHouseholds" placeholder="Affected household IDs separated by comma" required></textarea>
+                <input name="rescheduledDate" type="date" required />
+                <button class="primary" type="submit">Approve reschedule</button>
+              </form>
+            </div>
+            <div class="card">
+              <h2>Ward summary report</h2>
+              <div class="list" id="reportsList"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const api = {
+        async get(url) {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error('Could not load application data.');
+          return response.json();
+        },
+        async post(url, data) {
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error || 'The request could not be completed.');
+          return result;
+        }
+      };
+
+      function setAuthMode(mode) {
+        const isSignup = mode === 'signup';
+        document.getElementById('loginForm').classList.toggle('hidden', isSignup);
+        document.getElementById('signupForm').classList.toggle('hidden', !isSignup);
+        document.getElementById('authTitle').textContent = isSignup ? 'Create your account' : 'Welcome back';
+        document.getElementById('authDescription').textContent = isSignup
+          ? 'Register your household to receive a collection schedule.'
+          : 'Sign in to manage your waste collection services.';
+        document.getElementById('authSwitchPrompt').textContent = isSignup ? 'Already registered?' : 'New resident?';
+        document.getElementById('authSwitchButton').textContent = isSignup ? 'Sign in' : 'Create an account';
+        document.getElementById('demoAccountNote').classList.toggle('hidden', isSignup);
+        document.getElementById('loginError').textContent = '';
+        document.getElementById('loginError').classList.remove('success');
+        document.getElementById('signupError').textContent = '';
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, (character) => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        })[character]);
+      }
+
+      document.getElementById('authSwitchButton').addEventListener('click', async () => {
+        const signupVisible = !document.getElementById('signupForm').classList.contains('hidden');
+        setAuthMode(signupVisible ? 'login' : 'signup');
+        if (!signupVisible) {
+          try {
+            const wards = await api.get('/api/wards');
+            const wardSelect = document.getElementById('signupWard');
+            wardSelect.innerHTML = '<option value="">Select your ward</option>' +
+              wards.map((ward) => `<option value="${escapeHtml(ward.id)}">${escapeHtml(ward.name)}</option>`).join('');
+          } catch (error) {
+            document.getElementById('signupError').textContent = error.message || 'Could not load wards.';
+          }
+        }
+      });
+
+      function showApplication(user) {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('appContainer').classList.remove('hidden');
+        const pendingStatus = user.status === 'pending' ? ' · awaiting verification' : '';
+        document.getElementById('signedInUser').textContent = `${user.name} · ${user.role.replace('_', ' ')}${pendingStatus}`;
+        loadDashboard().catch((error) => {
+          window.alert(error.message);
+        });
+      }
+
+      document.getElementById('signupForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const signupForm = event.currentTarget;
+        const errorMessage = document.getElementById('signupError');
+        const submitButton = signupForm.querySelector('button[type="submit"]');
+        const formData = new FormData(signupForm);
+        const data = Object.fromEntries(formData.entries());
+        errorMessage.textContent = '';
+
+        if (data.password !== data.confirmPassword) {
+          errorMessage.textContent = 'Passwords do not match.';
+          return;
+        }
+
+        submitButton.disabled = true;
+        try {
+          const result = await api.post('/api/signup', {
+            name: data.name,
+            phone: data.phone,
+            address: data.address,
+            wardId: data.wardId,
+            password: data.password
+          });
+          signupForm.reset();
+          setAuthMode('login');
+          document.getElementById('loginPhone').value = result.user.phone;
+          document.getElementById('loginRole').value = 'resident';
+          const loginMessage = document.getElementById('loginError');
+          loginMessage.textContent = result.message;
+          loginMessage.classList.add('success');
+        } catch (error) {
+          errorMessage.textContent = error.message || 'Sign-up failed. Please try again.';
+        } finally {
+          submitButton.disabled = false;
+        }
+      });
+
+      document.getElementById('loginForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const loginForm = event.currentTarget;
+        const errorMessage = document.getElementById('loginError');
+        const submitButton = loginForm.querySelector('button[type="submit"]');
+        errorMessage.textContent = '';
+        errorMessage.classList.remove('success');
+        submitButton.disabled = true;
+
+        try {
+          const form = new FormData(loginForm);
+          const result = await api.post('/api/login', Object.fromEntries(form.entries()));
+          sessionStorage.setItem('wasteCollectionUser', JSON.stringify(result.user));
+          loginForm.reset();
+          showApplication(result.user);
+        } catch (error) {
+          errorMessage.textContent = error instanceof TypeError
+            ? 'Cannot reach the app server. Start it with “npm start” and open the app at the same server address.'
+            : error.message || 'Sign in failed. Please try again.';
+        } finally {
+          submitButton.disabled = false;
+        }
+      });
+
+      document.getElementById('logoutButton').addEventListener('click', () => {
+        sessionStorage.removeItem('wasteCollectionUser');
+        document.getElementById('appContainer').classList.add('hidden');
+        document.getElementById('loginPage').classList.remove('hidden');
+        document.getElementById('loginForm').reset();
+        document.getElementById('loginError').textContent = '';
+      });
+
+      async function loadDashboard() {
+        const dashboard = await api.get('/api/dashboard');
+        const statsGrid = document.getElementById('statsGrid');
+        const summary = dashboard.summary;
+        const cards = [
+          { label: 'Wards', value: summary.wards },
+          { label: 'Households', value: summary.households },
+          { label: 'Workers', value: summary.workers },
+          { label: 'Routes', value: summary.routes },
+          { label: 'Pickups', value: summary.pickups },
+          { label: 'Complaints', value: summary.complaints }
+        ];
+
+        statsGrid.innerHTML = cards.map(card => `
+          <div class="card">
+            <div class="stat-label">${card.label}</div>
+            <div class="stat-value">${card.value}</div>
+          </div>
+        `).join('');
+
+        document.getElementById('notificationsList').innerHTML = (dashboard.notifications || []).map((item) => `
+          <div class="item">
+            <div><strong>${escapeHtml(item.type.replace('_', ' '))}</strong></div>
+            <div class="small">${escapeHtml(item.message)}</div>
+            <div class="small">${escapeHtml(new Date(item.sentAt).toLocaleString())}</div>
+          </div>
+        `).join('');
+
+        document.getElementById('residentQueueList').innerHTML = (dashboard.residentRegistrations || []).map((resident) => `
+          <div class="item">
+            <div><strong>${escapeHtml(resident.name)}</strong></div>
+            <div class="small">${escapeHtml(resident.address)}</div>
+            <div class="small">Status: <span class="badge ${resident.status === 'verified' ? 'success' : 'warning'}">${escapeHtml(resident.status)}</span></div>
+            <button class="secondary" data-resident-id="${escapeHtml(resident.id)}">Verify</button>
+          </div>
+        `).join('');
+
+        document.getElementById('complaintsList').innerHTML = (dashboard.complaints || []).map((complaint) => `
+          <div class="item">
+            <div><strong>${escapeHtml(complaint.title)}</strong> <span class="badge ${complaint.status === 'open' ? 'warning' : 'info'}">${escapeHtml(complaint.status)}</span></div>
+            <div class="small">${escapeHtml(complaint.description)}</div>
+            <div class="small">Resident ID: ${escapeHtml(complaint.residentId)}</div>
+          </div>
+        `).join('');
+
+        document.getElementById('reportsList').innerHTML = (dashboard.monthlyReports || []).map((report) => `
+          <div class="item">
+            <div><strong>Ward ${escapeHtml(report.wardId)}</strong></div>
+            <div class="small">Coverage ${escapeHtml(report.coverage || '0')}%</div>
+            <div class="small">Total: ${escapeHtml(report.totalHouseholds)}, Collected: ${escapeHtml(report.collected)}, Missed: ${escapeHtml(report.missed)}</div>
+          </div>
+        `).join('');
+
+        populateSelect('residentWardSelect', dashboard.wards, 'name', 'id');
+        populateSelect('routeWardSelect', dashboard.wards, 'name', 'id');
+        populateSelect('disruptionWardSelect', dashboard.wards, 'name', 'id');
+        populateSelect('pickupWorkerSelect', dashboard.workers, 'name', 'id');
+        populateSelect('routeWorkerSelect', dashboard.workers, 'name', 'id');
+        populateSelect('attendanceWorkerSelect', dashboard.workers, 'name', 'id');
+
+        const vehicles = [
+          { id: 'V-101', name: 'Auto V-101' },
+          { id: 'V-201', name: 'Truck V-201' }
+        ];
+        populateSelect('vehicleSelect', vehicles, 'name', 'id');
+
+        populateSelect('pickupRouteSelect', dashboard.routes, 'id', 'id');
+        populateSelect('attendanceRouteSelect', dashboard.routes, 'id', 'id');
+        populateSelect('pickupHouseholdSelect', dashboard.residentRegistrations, 'address', 'id');
+      }
+
+      function populateSelect(selectorId, items, labelKey, valueKey) {
+        const target = document.getElementById(selectorId);
+        if (!target) return;
+        target.innerHTML = '<option value="">Select</option>' + items.map((item) => `<option value="${escapeHtml(item[valueKey])}">${escapeHtml(item[labelKey])}</option>`).join('');
+      }
+
+      document.querySelectorAll('[data-target]').forEach((button) => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.section').forEach((section) => section.classList.add('hidden'));
+          document.getElementById(button.dataset.target)?.classList.remove('hidden');
+        });
+      });
+
+      document.getElementById('registerForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const data = Object.fromEntries(form.entries());
+        await fetch('/api/register-household', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        event.target.reset();
+        const signedInUser = sessionStorage.getItem('wasteCollectionUser');
+        if (signedInUser) {
+          try {
+            showApplication(JSON.parse(signedInUser));
+          } catch (error) {
+            sessionStorage.removeItem('wasteCollectionUser');
+          }
+        }
+      });
+
+      document.getElementById('pickupForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const data = Object.fromEntries(form.entries());
+        await fetch('/api/pickup/confirm', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            householdId: data.householdId,
+            workerId: data.workerId,
+            routeId: data.routeId,
+            qrCode: data.qrCode,
+            gps: { lat: Number(data.gpsLat), lng: Number(data.gpsLng) }
+          })
+        });
+        event.target.reset();
+        loadDashboard();
+      });
+
+      document.getElementById('attendanceForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const data = Object.fromEntries(form.entries());
+        await fetch('/api/worker/attendance', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            workerId: data.workerId,
+            routeId: data.routeId,
+            checkIn: data.checkIn ? new Date(data.checkIn).toISOString() : new Date().toISOString(),
+            checkOut: data.checkOut ? new Date(data.checkOut).toISOString() : null,
+            gps: { lat: Number(data.gpsLat), lng: Number(data.gpsLng) }
+          })
+        });
+        event.target.reset();
+        loadDashboard();
+      });
+
+      document.getElementById('routeForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const data = Object.fromEntries(form.entries());
+        const households = (data.households || '').split(',').map((value) => value.trim()).filter(Boolean);
+        await fetch('/api/route/create', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            wardId: data.wardId,
+            workerId: data.workerId,
+            vehicleId: data.vehicleId,
+            window: data.window,
+            households
+          })
+        });
+        event.target.reset();
+        loadDashboard();
+      });
+
+      document.getElementById('disruptionForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const data = Object.fromEntries(form.entries());
+        const affected = (data.affectedHouseholds || '').split(',').map((value) => value.trim()).filter(Boolean);
+        await fetch('/api/disruption/create', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            wardId: data.wardId,
+            reason: data.reason,
+            affectedHouseholds: affected,
+            rescheduledDate: data.rescheduledDate
+          })
+        });
+        event.target.reset();
+        loadDashboard();
+      });
+
+      document.getElementById('residentQueueList').addEventListener('click', (event) => {
+        const button = event.target.closest('[data-resident-id]');
+        if (button) window.verifyResident(button.dataset.residentId);
+      });
+
+      window.verifyResident = async function (residentId) {
+        await fetch(`/api/verify-household/${residentId}`, { method: 'POST' });
+        loadDashboard();
+      };
+
+      loadDashboard();
+    </script>
+  </body>
+</html>

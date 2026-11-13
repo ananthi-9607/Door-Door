@@ -1,0 +1,347 @@
+{
+  "wards": [
+    {
+      "id": "W-101",
+      "name": "Ward 1",
+      "officerId": "OFF-1"
+    },
+    {
+      "id": "W-102",
+      "name": "Ward 2",
+      "officerId": "OFF-2"
+    },
+    {
+      "id": "W-103",
+      "name": "Ward 3",
+      "officerId": "OFF-3"
+    }
+  ],
+  "users": [
+    {
+      "id": "RES-1",
+      "role": "resident",
+      "name": "Asha Kumar",
+      "phone": "+91 90000 11111",
+      "wardId": "W-101",
+      "address": "12, Green Park, Ward 1",
+      "status": "verified",
+      "qrCode": "QR-RES-1",
+      "schedule": "Mon, Wed, Fri"
+    },
+    {
+      "id": "RES-2",
+      "role": "resident",
+      "name": "Ravi Sharma",
+      "phone": "+91 90000 22222",
+      "wardId": "W-101",
+      "address": "18, Green Park, Ward 1",
+      "status": "verified",
+      "qrCode": "QR-RES-2",
+      "schedule": "Tue, Thu, Sat"
+    },
+    {
+      "id": "RES-3",
+      "role": "resident",
+      "name": "Meena Iyer",
+      "phone": "+91 90000 33333",
+      "wardId": "W-102",
+      "address": "9, Lakshmi Nagar, Ward 2",
+      "status": "pending",
+      "qrCode": "QR-RES-3",
+      "schedule": "Daily"
+    },
+    {
+      "id": "OFF-1",
+      "role": "ward_officer",
+      "name": "Suresh Nair",
+      "phone": "+91 91111 11111",
+      "wardId": "W-101"
+    },
+    {
+      "id": "OFF-2",
+      "role": "ward_officer",
+      "name": "Priya Das",
+      "phone": "+91 91111 22222",
+      "wardId": "W-102"
+    },
+    {
+      "id": "OFF-3",
+      "role": "ward_officer",
+      "name": "Arun Reddy",
+      "phone": "+91 91111 33333",
+      "wardId": "W-103"
+    },
+    {
+      "id": "ADM-1",
+      "role": "admin",
+      "name": "Municipal Admin",
+      "phone": "+91 92222 44444",
+      "wardId": null
+    },
+    {
+      "id": "WORK-1",
+      "role": "worker",
+      "name": "Kiran",
+      "phone": "+91 93333 11111",
+      "wardId": "W-101",
+      "vehicleId": "V-101",
+      "routeId": "R-101"
+    },
+    {
+      "id": "WORK-2",
+      "role": "worker",
+      "name": "Ramesh",
+      "phone": "+91 93333 22222",
+      "wardId": "W-102",
+      "vehicleId": "V-201",
+      "routeId": "R-201"
+    },
+    {
+      "id": "RES-1793551170021",
+      "role": "resident",
+      "name": "Ananthi M",
+      "phone": "6381945955",
+      "address": "parai malai,rasipuram",
+      "wardId": "W-101",
+      "status": "pending",
+      "qrCode": "QR-1793551170021",
+      "schedule": "Not assigned yet"
+    },
+    {
+      "id": "RES-1793551909773",
+      "role": "resident",
+      "name": "Ananthi M",
+      "phone": "+91 98888 77770",
+      "address": "34,alaganagar,rasipuram",
+      "wardId": "W-101",
+      "status": "pending",
+      "qrCode": null,
+      "schedule": "Not assigned yet",
+      "passwordHash": "77de28bbbfdfdb29c1b501b23013d168:c5c7a002086e1038bd11149e1c81492f23171a1fc7e1ea97edae838f6edefcfc01bc38207c8b5174acc770c0f8126f4ace65b0999acf4c598b876d0cd02c072d"
+    },
+    {
+      "id": "RES-1793552065568",
+      "role": "resident",
+      "name": "Ananthi M",
+      "phone": "9080706050",
+      "address": "24,xyz,yub",
+      "wardId": "W-101",
+      "status": "pending",
+      "qrCode": null,
+      "schedule": "Not assigned yet",
+      "passwordHash": "3b2ae785e986b640d3a9c835b1500208:82f09a0078a3f54414a1188d1d892fd9190165f293a278c2d5b59ba9592afa4521d70c2770c0a003ebf6e7c49ea47911f30a62c1032eea88e162679405eab1e3"
+    },
+    {
+      "id": "RES-1793552113455",
+      "role": "resident",
+      "name": "Ananthi M",
+      "phone": "9080706050",
+      "address": "2,xyz,yub",
+      "wardId": "W-101",
+      "status": "pending",
+      "qrCode": "QR-1793552113455",
+      "schedule": "Not assigned yet"
+    },
+    {
+      "id": "RES-1793552551598",
+      "role": "resident",
+      "name": "Ramar",
+      "phone": "6789690326",
+      "address": "23,bnm,mnb",
+      "wardId": "W-103",
+      "status": "pending",
+      "qrCode": null,
+      "schedule": "Not assigned yet",
+      "passwordHash": "22b1b0ecc49b995f866126289d642153:7105e0d940d32db346646ff77550b54720d4c7af7a036f31f4b0d04fcb234fc803fa3387a556cfbea2468f7683abbba4b39cafccd9c8f4dd981cc43378c87ace"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "V-101",
+      "type": "Auto",
+      "status": "active",
+      "lastKnownLocation": {
+        "lat": 12.9716,
+        "lng": 77.5946
+      }
+    },
+    {
+      "id": "V-201",
+      "type": "Truck",
+      "status": "active",
+      "lastKnownLocation": {
+        "lat": 12.9352,
+        "lng": 77.6245
+      }
+    }
+  ],
+  "routes": [
+    {
+      "id": "R-101",
+      "wardId": "W-101",
+      "workerId": "WORK-1",
+      "vehicleId": "V-101",
+      "window": "07:00-11:00",
+      "households": [
+        "RES-1",
+        "RES-2"
+      ],
+      "status": "assigned"
+    },
+    {
+      "id": "R-201",
+      "wardId": "W-102",
+      "workerId": "WORK-2",
+      "vehicleId": "V-201",
+      "window": "08:00-12:00",
+      "households": [
+        "RES-3"
+      ],
+      "status": "assigned"
+    }
+  ],
+  "pickups": [
+    {
+      "id": "P-1",
+      "householdId": "RES-1",
+      "workerId": "WORK-1",
+      "routeId": "R-101",
+      "status": "confirmed",
+      "timestamp": "2026-11-01T07:30:00Z",
+      "gps": {
+        "lat": 12.9716,
+        "lng": 77.5946
+      },
+      "qrCode": "QR-RES-1"
+    },
+    {
+      "id": "P-2",
+      "householdId": "RES-2",
+      "workerId": "WORK-1",
+      "routeId": "R-101",
+      "status": "missed",
+      "timestamp": "2026-11-01T08:10:00Z",
+      "gps": {
+        "lat": 12.9716,
+        "lng": 77.5946
+      },
+      "reason": "Resident not available"
+    },
+    {
+      "id": "P-1793551220263",
+      "householdId": "RES-1",
+      "workerId": "WORK-1",
+      "routeId": "R-101",
+      "status": "confirmed",
+      "timestamp": "2026-11-01T16:40:20.263Z",
+      "gps": {
+        "lat": 4,
+        "lng": 6
+      },
+      "qrCode": "34567"
+    },
+    {
+      "id": "P-1793552151331",
+      "householdId": "RES-1793552065568",
+      "workerId": "WORK-1",
+      "routeId": "R-101",
+      "status": "confirmed",
+      "timestamp": "2026-11-01T16:55:51.331Z",
+      "gps": {
+        "lat": 5,
+        "lng": 7
+      },
+      "qrCode": "pending"
+    }
+  ],
+  "complaints": [
+    {
+      "id": "C-1",
+      "residentId": "RES-2",
+      "title": "Missed pickup",
+      "description": "Waste was not collected on the assigned day",
+      "status": "in_review",
+      "photos": [],
+      "createdAt": "2026-11-01T09:12:00Z",
+      "wardId": "W-101"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "N-1",
+      "userId": "RES-2",
+      "type": "missed_pickup",
+      "message": "Your household was marked missed. The ward officer has been notified.",
+      "sentAt": "2026-11-01T09:00:00Z"
+    },
+    {
+      "id": "N-1793551135648",
+      "userId": "RES-1",
+      "type": "verification",
+      "message": "Your household 12, Green Park, Ward 1 has been verified and assigned a QR code.",
+      "sentAt": "2026-11-01T16:38:55.648Z"
+    },
+    {
+      "id": "N-1793551220263",
+      "userId": "RES-1",
+      "type": "pickup_confirmed",
+      "message": "Waste collection confirmed for 12, Green Park, Ward 1.",
+      "sentAt": "2026-11-01T16:40:20.263Z"
+    },
+    {
+      "id": "N-1793552151331",
+      "userId": "RES-1793552065568",
+      "type": "pickup_confirmed",
+      "message": "Waste collection confirmed for 24,xyz,yub.",
+      "sentAt": "2026-11-01T16:55:51.331Z"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "A-1",
+      "workerId": "WORK-1",
+      "routeId": "R-101",
+      "checkIn": "2026-11-01T06:45:00Z",
+      "checkOut": "2026-11-01T12:05:00Z",
+      "gps": {
+        "lat": 12.9716,
+        "lng": 77.5946
+      }
+    },
+    {
+      "id": "A-1793552262884",
+      "workerId": "WORK-1",
+      "routeId": "R-101",
+      "checkIn": "2026-11-01T17:56:00.000Z",
+      "checkOut": "2026-11-11T16:56:00.000Z",
+      "gps": {
+        "lat": 5,
+        "lng": 5
+      }
+    }
+  ],
+  "disruptions": [
+    {
+      "id": "D-1",
+      "wardId": "W-101",
+      "reason": "Heavy rain",
+      "status": "approved",
+      "affectedHouseholds": [
+        "RES-1",
+        "RES-2"
+      ],
+      "rescheduledDate": "2026-11-02"
+    }
+  ],
+  "reports": [
+    {
+      "id": "REP-1",
+      "wardId": "W-101",
+      "month": "2026-11",
+      "totalHouseholds": 2,
+      "collected": 1,
+      "missed": 1,
+      "generatedAt": "2026-11-01T12:00:00Z"
+    }
+  ]
+}

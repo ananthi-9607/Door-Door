@@ -1,0 +1,21 @@
+{
+  "name": "door-door-waste-collection-system",
+  "version": "1.0.0",
+  "description": "Smart Door-to-Door Waste Collection Scheduling System prototype built from the MRD and PRD requirements",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "waste-collection",
+    "municipal",
+    "schedule",
+    "prototype"
+  ],
+  "author": "Copilot",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
